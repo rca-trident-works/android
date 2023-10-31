@@ -21,19 +21,19 @@
 
         <Button
             android:id="@+id/button7"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="B1"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="B2"
             android:textSize="34sp" />
     </LinearLayout>
@@ -45,28 +45,28 @@
 
         <Button
             android:id="@+id/button9"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="C1"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button10"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="C2"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button11"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="C3"
             android:textSize="34sp" />
     </LinearLayout>
@@ -78,37 +78,37 @@
 
         <Button
             android:id="@+id/button12"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="D1"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button13"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="D2"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button14"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="D3"
             android:textSize="34sp" />
 
         <Button
             android:id="@+id/button15"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:text="D4"
             android:textSize="34sp" />
     </LinearLayout>

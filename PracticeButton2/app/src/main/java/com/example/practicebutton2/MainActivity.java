@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button1).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View view) {
                         EditText editText1 = (EditText)findViewById(R.id.editText1);
                         TextView textView1 = (TextView)findViewById(R.id.textView1);
 

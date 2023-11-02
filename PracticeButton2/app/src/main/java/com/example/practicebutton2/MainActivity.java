@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
                         EditText editText1 = (EditText)findViewById(R.id.editText1);
                         TextView textView1 = (TextView)findViewById(R.id.textView1);
 
-                        textView1.setText(editText1.getText());
+                        textView1.setText(textView1.getText() + editText1.getText().toString());
                     }
                 }
         );

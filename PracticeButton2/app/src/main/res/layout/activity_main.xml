@@ -20,13 +20,14 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="コピー"
+        android:text="追記"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#DCEDC8"
         android:text="TextView"
         android:textSize="24sp" />
 </LinearLayout>

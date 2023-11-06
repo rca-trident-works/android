@@ -23,5 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.button1) {
             Toast.makeText(this, "リスナー: ボタン1が押されました", Toast.LENGTH_SHORT).show();
         }
+        if (v.getId() == R.id.button2) {
+            Toast.makeText(this, "リスナー: ボタン2が押されました", Toast.LENGTH_SHORT).show();
+        }
     }
 }

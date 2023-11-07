@@ -6,25 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+<!--    <TextView-->
+<!--        android:id="@+id/textViewTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:text="PageTitle"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/primaryWebView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
     <WebView
         android:id="@+id/primaryWebView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/bottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavUrl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
     </WebView>
 
     <LinearLayout
-        android:id="@+id/bottomNav"
+        android:id="@+id/bottomNavUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavActions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -38,6 +48,7 @@
                 android:id="@+id/buttonAccessUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4px"
                 android:layout_weight="0"
                 android:text="Go" />
         </LinearLayout>
@@ -52,12 +63,60 @@
                 android:id="@+id/editTextUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4px"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:text="URL" />
+                android:hint="URL"
+                android:inputType="textUri"
+                android:minHeight="48dp" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNavActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4px"
+            android:layout_marginLeft="2px"
+            android:layout_marginRight="2px"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:text="Back"
+            app:icon="@drawable/outline_arrow_circle_left_24" />
+
+        <Button
+            android:id="@+id/buttonForward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4px"
+            android:layout_marginLeft="2px"
+            android:layout_marginRight="2px"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:text="Forward"
+            app:icon="@drawable/outline_arrow_circle_right_24" />
+
+        <Switch
+            android:id="@+id/switchJavaScript"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="4px"
+            android:layout_marginLeft="2px"
+            android:layout_marginRight="2px"
+            android:layout_weight="1"
+            android:checked="true"
+            android:includeFontPadding="false"
+            android:text="JavaScript" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

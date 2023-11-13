@@ -15,9 +15,19 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.button1).setOnClickListener(
                 new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "無名クラス: ボタン1が押されました", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+
+        findViewById(R.id.button2).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "無名クラス: ボタン2が押されました", Toast.LENGTH_LONG).show();
                     }
                 }
         );

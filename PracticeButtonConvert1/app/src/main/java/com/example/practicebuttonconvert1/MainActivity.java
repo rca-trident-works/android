@@ -16,58 +16,46 @@ public class MainActivity extends AppCompatActivity {
 
         // ボタン１がクリックされた時の処理
         findViewById(R.id.button1).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // ボタンのビューを取得する
-                        Button btn = findViewById(R.id.button1);
+                view -> {
+                    // ボタンのビューを取得する
+                    Button btn = findViewById(R.id.button1);
 
-                        // getTextメソッドにより，表示文字を取り出す。
-                        // そのままだと異なる型のため，toStringメソッドによりString型へ型変換する。
-                        String s = btn.getText().toString();
+                    // getTextメソッドにより，表示文字を取り出す。
+                    // そのままだと異なる型のため，toStringメソッドによりString型へ型変換する。
+                    String s = btn.getText().toString();
 
-                        // トースト表示する。
-                        Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
-                    }
+                    // トースト表示する。
+                    Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
                 }
         );
 
         // ボタン２がクリックされた時の処理
         findViewById(R.id.button2).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // ボタンのビューを取得する
-                        Button btn = findViewById(R.id.button2);
-                        String s = btn.getText().toString();
-                        Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
-                    }
+                view -> {
+                    // ボタンのビューを取得する
+                    Button btn = findViewById(R.id.button2);
+                    String s = btn.getText().toString();
+                    Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
                 }
         );
 
         // ボタン３がクリックされた時の処理
         findViewById(R.id.button3).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // ボタンのビューを取得する
-                        Button btn = findViewById(R.id.button3);
-                        String s = btn.getText().toString();
-                        Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
-                    }
+                view -> {
+                    // ボタンのビューを取得する
+                    Button btn = findViewById(R.id.button3);
+                    String s = btn.getText().toString();
+                    Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
                 }
         );
 
         // ボタン４がクリックされた時の処理
         findViewById(R.id.button4).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // ボタンのビューを取得する
-                        Button btn = findViewById(R.id.button4);
-                        String s = btn.getText().toString();
-                        Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
-                    }
+                view -> {
+                    // ボタンのビューを取得する
+                    Button btn = findViewById(R.id.button4);
+                    String s = btn.getText().toString();
+                    Toast.makeText(MainActivity.this, s + "ですね", Toast.LENGTH_SHORT).show();
                 }
         );
     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +20,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final EditText et1
+        final EditText et1 = findViewById(R.id.editText1);
+
+        findViewById(R.id.buttonSave).setOnClickListener(
+                (View view) -> {
+                    SharedPreferences.Editor e = pref.edit();
+                    e.putString("variable1", et1.getText().toString());
+                    e.apply();
+                }
+        );
+
+        findViewById(R.id.buttonLoad).setOnClickListener(
+                (View view) -> {
+                    et1.setText(pref.getString("variable1", "値はありません"));
+                }
+        );
+
+        findViewById(R.id.buttonReset).setOnClickListener(
+                (View view) -> {
+                    et1.setText("");
+                }
+        );
 
     }
 }

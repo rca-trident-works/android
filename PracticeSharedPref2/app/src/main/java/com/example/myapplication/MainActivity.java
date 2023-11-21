@@ -75,7 +75,16 @@ public class MainActivity extends AppCompatActivity {
                     e.apply();
                 }
         );
+    }
 
+    // アクティビティを離れるときに書き込む
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor e = pref.edit();
+        e.putString("variable3", ((TextView)findViewById(R.id.textView1)).getText().toString());
+        e.apply();
     }
 }

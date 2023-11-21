@@ -16,24 +16,28 @@
             android:id="@+id/radioButtonBlue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="青色"
+            android:textSize="48sp" />
 
         <RadioButton
             android:id="@+id/radioButtonYellow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="黄色"
+            android:textSize="48sp" />
 
         <RadioButton
             android:id="@+id/radioButtonRed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="赤色"
+            android:textSize="48sp" />
     </RadioGroup>
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="次へ"
+        android:textSize="48sp" />
 </LinearLayout>

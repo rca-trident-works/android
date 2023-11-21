@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         final EditText et1 = findViewById(R.id.editText1);
+        final EditText et2 = findViewById(R.id.editText2);
 
         findViewById(R.id.buttonSave).setOnClickListener(
                 (View view) -> {
                     SharedPreferences.Editor e = pref.edit();
                     e.putString("variable1", et1.getText().toString());
+                    e.putString("variable2", et2.getText().toString());
                     e.apply();
                 }
         );
@@ -33,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.buttonLoad).setOnClickListener(
                 (View view) -> {
                     et1.setText(pref.getString("variable1", "値はありません"));
+                    et2.setText(pref.getString("variable2", "値はありません"));
                 }
         );
 
         findViewById(R.id.buttonReset).setOnClickListener(
                 (View view) -> {
                     et1.setText("");
+                    et2.setText("");
                 }
         );
 

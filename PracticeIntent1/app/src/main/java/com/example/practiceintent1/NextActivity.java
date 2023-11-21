@@ -34,4 +34,4 @@ public class NextActivity extends AppCompatActivity {
             finish();
         });
     }
-}
+}お

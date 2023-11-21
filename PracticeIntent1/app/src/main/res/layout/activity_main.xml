@@ -21,9 +21,15 @@
         android:layout_height="wrap_content"
         android:text="次へ" />
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/buttonFinish1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="終了する" />
+
 </LinearLayout>

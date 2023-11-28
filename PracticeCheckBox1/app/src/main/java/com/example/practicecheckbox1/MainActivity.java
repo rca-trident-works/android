@@ -54,21 +54,75 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-//        cbB.setOnCheckedChangeListener(                         //【結び付け】
-//                【cbAと同じであるため，省略】
-//        );
+        cbB.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-//        cbC.setOnCheckedChangeListener(                         //【結び付け】
-//                【cbAと同じであるため，省略】
-//        );
+                            //重み　：  4   2   1
+                            //         □   □   □
+                            //ビュー：cbA cbB cbC
 
-        findViewById(R.id.buttonAll0).setOnClickListener(
-                view -> {
-                    cbA.setChecked(false); //checkBoxAのチェック状態をfalse(OFF)にする。
-                    cbB.setChecked(false);
-                    cbC.setChecked(false);
+                            int value = 0;  //初期値は0
+
+                            //CheckBoxCがCheckされていたら  isChecked()はtrueならcheckされている
+                            if (cbC.isChecked() == true) { //	      falseならcheckされていない
+                                value += 1; //2の0乗である1を加算する
+                            }
+
+                            //CheckBoxBがCheckされていたら　※「== true」は省略されることが多い
+                            if (cbB.isChecked()) {
+                                value += 2; //2の1乗である2を加算する
+                            }
+
+                            if (cbA.isChecked()) {
+                                value += 4; //2の2乗である4を加算する
+                            }
+
+                            //valueの値をString型に型変換し，textView1の表示文字にする。
+                            tv1.setText(String.valueOf(value));
+                    }
                 }
+
         );
+
+        cbC.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                                //重み　：  4   2   1
+                                //         □   □   □
+                                //ビュー：cbA cbB cbC
+
+                                int value = 0;  //初期値は0
+
+                                //CheckBoxCがCheckされていたら  isChecked()はtrueならcheckされている
+                                if (cbC.isChecked() == true) { //	      falseならcheckされていない
+                                    value += 1; //2の0乗である1を加算する
+                                }
+
+                                //CheckBoxBがCheckされていたら　※「== true」は省略されることが多い
+                                if (cbB.isChecked()) {
+                                    value += 2; //2の1乗である2を加算する
+                                }
+
+                                if (cbA.isChecked()) {
+                                    value += 4; //2の2乗である4を加算する
+                                }
+
+                                //valueの値をString型に型変換し，textView1の表示文字にする。
+                                tv1.setText(String.valueOf(value));
+                    }
+                });
+
+                findViewById(R.id.buttonAll0).setOnClickListener(
+                        view -> {
+                            cbA.setChecked(false); //checkBoxAのチェック状態をfalse(OFF)にする。
+                            cbB.setChecked(false);
+                            cbC.setChecked(false);
+                        }
+                );
 
     }
 

@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                 );
 
+                findViewById(R.id.buttonAll1).setOnClickListener(
+                        view -> {
+                            cbA.setChecked(true); //checkBoxAのチェック状態をtrue(ON)にする。
+                            cbB.setChecked(true);
+                            cbC.setChecked(true);
+                        }
+                );
+
     }
 
 }

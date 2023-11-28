@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     //ArrayListの一番下に値を追加
                     arrayList.add(str);
 
+                    //ArrayListの先頭に値を追加
+                    // arrayList.add(0, str);
+
                     //一番下に値が追加されたことをAdapterが画面に通知
                     adapter.notifyItemInserted(arrayList.size());
                 }

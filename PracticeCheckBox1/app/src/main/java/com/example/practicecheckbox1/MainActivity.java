@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements CheckBox.OnChecke
         int value = 0;  //初期値は0
 
         //CheckBoxCがCheckされていたら  isChecked()はtrueならcheckされている
-        if (cbC.isChecked() == true) { //	      falseならcheckされていない
+        if (cbC.isChecked()) {
             value += 1; //2の0乗である1を加算する
         }
 

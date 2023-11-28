@@ -63,13 +63,10 @@ public class MainActivity extends AppCompatActivity {
 //        );
 
         findViewById(R.id.buttonAll0).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        cbA.setChecked(false); //checkBoxAのチェック状態をfalse(OFF)にする。
-                        cbB.setChecked(false);
-                        cbC.setChecked(false);
-                    }
+                view -> {
+                    cbA.setChecked(false); //checkBoxAのチェック状態をfalse(OFF)にする。
+                    cbB.setChecked(false);
+                    cbC.setChecked(false);
                 }
         );
 

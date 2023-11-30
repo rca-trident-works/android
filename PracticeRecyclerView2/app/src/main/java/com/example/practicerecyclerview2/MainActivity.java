@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         // SharedPreferences init
         final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor e = pref.edit();
 
         // Load button
         findViewById(R.id.btnLoad).setOnClickListener(v -> {
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Save button
         findViewById(R.id.btnSave).setOnClickListener(v -> {
-            e.putString("current", String.join(",", arrayList)).apply();
+            pref.edit().putString("current", String.join(",", arrayList)).apply();
             Toast.makeText(this, "書込みました", Toast.LENGTH_SHORT).show();
         });
     }

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Save button
-        findViewById(R.id.btnSave).setOnClickListener(v -> e.putString("current", String.join(",", arrayList)).apply());
+        findViewById(R.id.btnSave).setOnClickListener(v -> {
+            e.putString("current", String.join(",", arrayList)).apply();
+            Toast.makeText(this, "書込みました", Toast.LENGTH_SHORT).show();
+        });
     }
 }

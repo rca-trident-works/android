@@ -76,13 +76,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnLoad).setOnClickListener(v -> {
             String str = pref.getString("current", "");
             arrayList.clear();
-            arrayList.addAll(Arrays.asList(str.substring(1, str.length() - 1).split(",")));
+            arrayList.addAll(Arrays.asList(pref.getString("current", "").split(",")));
             adapter.notifyDataSetChanged();
         });
 
         // Save button
         findViewById(R.id.btnSave).setOnClickListener(v -> {
-            e.putString("current", arrayList.toString());
+            String str = String.join(",", arrayList);
+            e.putString("current", str);
             e.apply();
         });
     }

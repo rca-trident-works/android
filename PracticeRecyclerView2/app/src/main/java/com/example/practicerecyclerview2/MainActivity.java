@@ -5,14 +5,19 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
+    @SuppressLint("NotifyDataSetChanged") // Suppress waring
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -62,5 +67,23 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyItemInserted(arrayList.size());
                 }
         );
+
+        // SharedPreferences init
+        final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor e = pref.edit();
+
+        // Load button
+        findViewById(R.id.btnLoad).setOnClickListener(v -> {
+            String str = pref.getString("current", "");
+            arrayList.clear();
+            arrayList.addAll(Arrays.asList(str.substring(1, str.length() - 1).split(",")));
+            adapter.notifyDataSetChanged();
+        });
+
+        // Save button
+        findViewById(R.id.btnSave).setOnClickListener(v -> {
+            e.putString("current", arrayList.toString());
+            e.apply();
+        });
     }
 }

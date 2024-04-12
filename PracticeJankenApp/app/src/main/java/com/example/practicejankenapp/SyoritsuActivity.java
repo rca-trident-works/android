@@ -34,6 +34,7 @@ public class SyoritsuActivity extends AppCompatActivity {
                 winCount + "勝" +
                 drawCount + "分" +
                 loseCount + "敗" +
-                "勝率" + (double) winCount / totalBattleCount * 100 + "%";
+                // 小数点以下1桁で四捨五入
+                "勝率" + Math.round((double) winCount / totalBattleCount * 1000) / 10.0 + "%";
     }
 }

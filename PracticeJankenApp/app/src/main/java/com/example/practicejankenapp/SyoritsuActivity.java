@@ -29,6 +29,14 @@ public class SyoritsuActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
     }
 
+    /**
+     * メッセージを取得する
+     * @param totalBattleCount 総対戦数
+     * @param winCount 勝利数
+     * @param drawCount 引き分け数
+     * @param loseCount 敗北数
+     * @return メッセージ
+     */
     private String getMessage(int totalBattleCount, int winCount, int drawCount, int loseCount) {
         return "全" + totalBattleCount + "回戦, " +
                 winCount + "勝, " +

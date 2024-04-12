@@ -1,6 +1,8 @@
 package com.example.practicejankenapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             assert appChoice != null;
             imageView.setImageResource(appChoice.getImageId());
             assert userChoice != null;
+            pushResultToSharedPreferences(userChoice.getNumber(), appChoice.getNumber());
             showResultDialog(getResultMessage(userChoice, appChoice));
         };
 
@@ -48,5 +51,28 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(resultMessage)
                 .setPositiveButton("了解", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    private void pushResultToSharedPreferences(int userChoice, int appChoice) {
+        SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        // 勝敗判定
+        int result = (userChoice - appChoice + 3) % 3;
+        // ,区切りで保存
+        editor.putString("result", pref.getString("result", "") + result + ",");
+        editor.apply();
+    }
+
+    private int[] getResultFromSharedPreferences() {
+        SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
+        String[] results = pref.getString("result", "").split(",");
+        int[] resultArray = new int[3];
+        for (String result : results) {
+            if (result.isEmpty()) {
+                continue;
+            }
+            resultArray[Integer.parseInt(result)]++;
+        }
+        return resultArray;
     }
 }

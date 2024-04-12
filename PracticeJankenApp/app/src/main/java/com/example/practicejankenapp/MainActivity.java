@@ -99,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void pushResultToSharedPreferences(int userChoice, int appChoice) {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("result", pref.getString("result", "") + (userChoice - appChoice + 3) % 3 + ",");
-        editor.apply();
+        pref.edit().putString("result", pref.getString("result", "") + (userChoice - appChoice + 3) % 3 + ",").apply();
     }
 
     /**
@@ -109,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
      * @return 結果[引き分け, 負け, 勝ち]
      */
     private int[] getResultFromSharedPreferences() {
-        SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
-        String[] results = pref.getString("result", "").split(",");
+        String[] results = getSharedPreferences("result", MODE_PRIVATE).getString("result", "").split(",");
         int[] resultArray = new int[3];
         for (String result : results) {
             if (result.isEmpty()) {

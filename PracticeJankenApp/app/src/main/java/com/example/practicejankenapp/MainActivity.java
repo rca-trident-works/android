@@ -100,10 +100,7 @@ public class MainActivity extends AppCompatActivity {
     private void pushResultToSharedPreferences(int userChoice, int appChoice) {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        // 勝敗判定
-        int result = (userChoice - appChoice + 3) % 3;
-        // ,区切りで保存
-        editor.putString("result", pref.getString("result", "") + result + ",");
+        editor.putString("result", pref.getString("result", "") + (userChoice - appChoice + 3) % 3 + ",");
         editor.apply();
     }
 

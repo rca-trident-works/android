@@ -43,15 +43,11 @@ public class MainActivity extends AppCompatActivity {
         // 結果表示ボタン
         findViewById(R.id.btnNext).setOnClickListener(v -> {
             int[] resultArray = getResultFromSharedPreferences();
-
-            Intent intent = new Intent(this, SyoritsuActivity.class);
-
-            intent.putExtra(SyoritsuIntentConstants.TOTAL_BATTLE_COUNT, resultArray[0] + resultArray[1] + resultArray[2]);
-            intent.putExtra(SyoritsuIntentConstants.WIN_COUNT, resultArray[2]);
-            intent.putExtra(SyoritsuIntentConstants.DRAW_COUNT, resultArray[0]);
-            intent.putExtra(SyoritsuIntentConstants.LOSE_COUNT, resultArray[1]);
-
-            startActivity(intent);
+            startActivity(new Intent(this, SyoritsuActivity.class)
+                            .putExtra(SyoritsuIntentConstants.TOTAL_BATTLE_COUNT, resultArray[0] + resultArray[1] + resultArray[2])
+                            .putExtra(SyoritsuIntentConstants.WIN_COUNT, resultArray[2])
+                            .putExtra(SyoritsuIntentConstants.DRAW_COUNT, resultArray[0])
+                            .putExtra(SyoritsuIntentConstants.LOSE_COUNT, resultArray[1]));
         });
     }
 

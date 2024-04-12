@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         View.OnClickListener listener = v -> {
             JankenHandItemEnum userChoice = handItemMap.get(v.getId());
+            // 0, 1, 2のいずれかをランダムで取得
             JankenHandItemEnum appChoice = JankenHandItemEnum.getByNumber((int) (Math.random() * 3));
             assert appChoice != null;
             imageView.setImageResource(appChoice.getImageId());
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.imgbtnGu).setOnClickListener(listener);
         findViewById(R.id.imgbtnChoki).setOnClickListener(listener);
 
+        // 結果表示ボタン
         findViewById(R.id.btnNext).setOnClickListener(v -> {
             int[] resultArray = getResultFromSharedPreferences();
 
@@ -56,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 結果メッセージを取得する
+     * @param userChoice ユーザーの選択
+     * @param appChoice アプリの選択
+     * @return 結果メッセージ
+     */
     private String getResultMessage(JankenHandItemEnum userChoice, JankenHandItemEnum appChoice) {
         int result = (userChoice.getNumber() - appChoice.getNumber() + 3) % 3;
         String resultMessage = "あなたが" + userChoice.getName() + "，アプリが" + appChoice.getName() + "で，";
@@ -73,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
         return resultMessage;
     }
 
+    /**
+     * 結果ダイアログを表示する
+     * @param resultMessage 結果メッセージ
+     */
     private void showResultDialog(String resultMessage) {
         new MaterialAlertDialogBuilder(this)
                 .setTitle("結果")
@@ -81,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * 結果をSharedPreferencesにpushする
+     * @param userChoice ユーザーの選択
+     * @param appChoice アプリの選択
+     */
     private void pushResultToSharedPreferences(int userChoice, int appChoice) {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -91,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * SharedPreferencesから結果を取得する
+     * @return 結果[引き分け, 負け, 勝ち]
+     */
     private int[] getResultFromSharedPreferences() {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
         String[] results = pref.getString("result", "").split(",");

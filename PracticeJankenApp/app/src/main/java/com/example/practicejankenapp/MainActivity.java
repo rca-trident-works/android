@@ -58,9 +58,8 @@ public class MainActivity extends AppCompatActivity {
      * @return 結果メッセージ
      */
     private String getResultMessage(JankenHandItemEnum userChoice, JankenHandItemEnum appChoice) {
-        int result = (userChoice.getNumber() - appChoice.getNumber() + 3) % 3;
         String resultMessage = "あなたが" + userChoice.getName() + "，アプリが" + appChoice.getName() + "で，";
-        switch (result) {
+        switch ((userChoice.getNumber() - appChoice.getNumber() + 3) % 3) {
             case 0:
                 resultMessage += "引き分け";
                 break;

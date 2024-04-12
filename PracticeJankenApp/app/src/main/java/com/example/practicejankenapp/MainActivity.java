@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,18 +48,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SyoritsuActivity.class);
 
             intent.putExtra(SyoritsuIntentConstants.TOTAL_BATTLE_COUNT, resultArray.length);
-            intent.putExtra(SyoritsuIntentConstants.DRAW_COUNT, countSpecificValue(resultArray, 0));
-            intent.putExtra(SyoritsuIntentConstants.LOSE_COUNT, countSpecificValue(resultArray, 1));
-            intent.putExtra(SyoritsuIntentConstants.WIN_COUNT, countSpecificValue(resultArray, 2));
+            intent.putExtra(SyoritsuIntentConstants.WIN_COUNT, resultArray[2]);
+            intent.putExtra(SyoritsuIntentConstants.DRAW_COUNT, resultArray[0]);
+            intent.putExtra(SyoritsuIntentConstants.LOSE_COUNT, resultArray[1]);
 
             startActivity(intent);
         });
-    }
-
-    private int countSpecificValue(int[] array, int value) {
-        return (int) Arrays.stream(array)
-                .filter(i -> i == value)
-                .count();
     }
 
     private String getResultMessage(JankenHandItemEnum userChoice, JankenHandItemEnum appChoice) {
@@ -99,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     private int[] getResultFromSharedPreferences() {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
         String[] results = pref.getString("result", "").split(",");
+        Log.d("prefString", pref.getString("result", ""));
         int[] resultArray = new int[3];
         for (String result : results) {
             if (result.isEmpty()) {
@@ -106,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
             resultArray[Integer.parseInt(result)]++;
         }
+        Log.d("result", Arrays.toString(resultArray));
         return resultArray;
     }
 }

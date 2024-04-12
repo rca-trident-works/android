@@ -30,11 +30,11 @@ public class SyoritsuActivity extends AppCompatActivity {
     }
 
     private String getMessage(int totalBattleCount, int winCount, int drawCount, int loseCount) {
-        return "全" + totalBattleCount + "回戦" +
-                winCount + "勝" +
-                drawCount + "分" +
-                loseCount + "敗" +
+        return "全" + totalBattleCount + "回戦, " +
+                winCount + "勝, " +
+                drawCount + "分, " +
+                loseCount + "敗, " +
                 // 小数点以下1桁で四捨五入
-                "勝率" + Math.round((double) winCount / totalBattleCount * 1000) / 10.0 + "%";
+                "勝率:" + Math.round((double) winCount / totalBattleCount * 1000) / 10.0 + "%";
     }
 }

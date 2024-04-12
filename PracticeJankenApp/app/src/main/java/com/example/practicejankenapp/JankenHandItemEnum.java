@@ -2,9 +2,9 @@ package com.example.practicejankenapp;
 
 public enum JankenHandItemEnum {
 
-    PAPER(0, R.drawable.janken_pa, "パー"),
-    ROCK(1, R.drawable.janken_pa, "グー"),
-    SCISSORS(2, R.drawable.janken_choki, "チョキ");
+    PAPER(2, R.drawable.janken_pa, "パー"),
+    ROCK(0, R.drawable.janken_gu, "グー"),
+    SCISSORS(1, R.drawable.janken_choki, "チョキ");
 
     private final int number;
     private final int imageId;

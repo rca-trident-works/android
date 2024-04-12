@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     private int[] getResultFromSharedPreferences() {
         SharedPreferences pref = getSharedPreferences("result", MODE_PRIVATE);
         String[] results = pref.getString("result", "").split(",");
-        Log.d("prefString", pref.getString("result", ""));
         int[] resultArray = new int[3];
         for (String result : results) {
             if (result.isEmpty()) {
@@ -122,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             }
             resultArray[Integer.parseInt(result)]++;
         }
-        Log.d("result", Arrays.toString(resultArray));
         return resultArray;
     }
 }

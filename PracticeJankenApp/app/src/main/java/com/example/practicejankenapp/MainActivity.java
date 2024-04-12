@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, SyoritsuActivity.class);
 
-            intent.putExtra(SyoritsuIntentConstants.TOTAL_BATTLE_COUNT, resultArray.length);
+            intent.putExtra(SyoritsuIntentConstants.TOTAL_BATTLE_COUNT, resultArray[0] + resultArray[1] + resultArray[2]);
             intent.putExtra(SyoritsuIntentConstants.WIN_COUNT, resultArray[2]);
             intent.putExtra(SyoritsuIntentConstants.DRAW_COUNT, resultArray[0]);
             intent.putExtra(SyoritsuIntentConstants.LOSE_COUNT, resultArray[1]);

@@ -62,8 +62,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getResultMessage(JankenHandItemEnum userChoice, JankenHandItemEnum appChoice) {
+        int result = (userChoice.getNumber() - appChoice.getNumber() + 3) % 3;
         String resultMessage = "あなたが" + userChoice.getName() + "，アプリが" + appChoice.getName() + "で，";
-        resultMessage += userChoice == appChoice ? "あいこ" : "あなたの" + (userChoice.getNumber() > appChoice.getNumber() ? "勝ち" : "負け");
+        switch (result) {
+            case 0:
+                resultMessage += "引き分け";
+                break;
+            case 1:
+                resultMessage += "あなたの負け";
+                break;
+            case 2:
+                resultMessage += "あなたの勝ち";
+                break;
+        }
         return resultMessage;
     }
 

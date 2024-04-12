@@ -6,18 +6,18 @@ public enum JankenHandItemEnum {
     ROCK(1, R.drawable.janken_pa, "グー"),
     SCISSORS(2, R.drawable.janken_choki, "チョキ");
 
-    private final int id;
+    private final int number;
     private final int imageId;
     private final String name;
 
-    JankenHandItemEnum(int id, int imageId, String name) {
-        this.id = id;
+    JankenHandItemEnum(int number, int imageId, String name) {
+        this.number = number;
         this.imageId = imageId;
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public int getNumber() {
+        return number;
     }
 
     public int getImageId() {
@@ -26,5 +26,13 @@ public enum JankenHandItemEnum {
 
     public String getName() {
         return name;
+    }
+    public static JankenHandItemEnum getByNumber(int number) {
+        for (JankenHandItemEnum item : values()) {
+            if (item.getNumber() == number) {
+                return item;
+            }
+        }
+        return null;
     }
 }

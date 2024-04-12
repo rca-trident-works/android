@@ -108,9 +108,7 @@ public class MainActivity extends AppCompatActivity {
         String[] results = getSharedPreferences("result", MODE_PRIVATE).getString("result", "").split(",");
         int[] resultArray = new int[3];
         for (String result : results) {
-            if (result.isEmpty()) {
-                continue;
-            }
+            if (result.isEmpty()) continue;
             resultArray[Integer.parseInt(result)]++;
         }
         return resultArray;

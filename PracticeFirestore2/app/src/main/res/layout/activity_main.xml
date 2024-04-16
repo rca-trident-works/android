@@ -11,10 +11,12 @@
         android:id="@+id/btnClear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="クリア" />
+        android:text="クリア"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textShow"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="24sp" />
 </LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "168607900992",
+    "project_id": "practicefirestore1-2d484",
+    "storage_bucket": "practicefirestore1-2d484.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168607900992:android:5e8a0e034e54bfed2ac6a5",
+        "android_client_info": {
+          "package_name": "com.example.practicefirestore1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHXl47o6PRVtKvJJ2Ru1p4kuYzzVm0C1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

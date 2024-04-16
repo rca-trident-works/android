@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         case ADDED:
                         case MODIFIED:
                         case REMOVED:
-                            textShow.append(document.getDocument().getData().toString() + "\n");
+                            textShow.append(document.getType() + ":" + document.getDocument().getData().toString() + "\n");
                         default:
                             break;
                     }

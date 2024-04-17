@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onResult(@NonNull Status status) {
                 displayNameTextView.setText("Signed out");
                 emailTextView.setText("");
+                grantedScopesTextView.setText("Granted: ");
                 iconImageView.setImageResource(R.drawable.ic_launcher_background);
             }
         });

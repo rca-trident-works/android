@@ -76,17 +76,18 @@
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="24px"
             android:layout_weight="1" />
 
         <Button
             android:id="@+id/signOutButton"
             android:layout_width="110dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="24px"
             android:layout_weight="1"
-            android:text="Sign Out" />
+            android:text="Sign Out"
+            style="@style/Widget.AppCompat.Button"/>
     </LinearLayout>
 
     <!-- ↓課題２ ボタンのコメントアウトを解除する -->

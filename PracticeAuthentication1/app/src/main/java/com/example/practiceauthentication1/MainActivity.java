@@ -1,11 +1,16 @@
 package com.example.practiceauthentication1;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +25,17 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     SignInButton signInButton;
     Button signOutButton;
-    TextView statusTextView;
+
+    ImageView iconImageView;
+    TextView displayNameTextView;
+    TextView emailTextView;
+
     GoogleApiClient mGoogleApiClient;
     /// Logcatで検索機能により，このアプリで出力したものだと判別するためのキーワード。
     private static final String TAG = "SignInActivity";
@@ -44,7 +55,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        statusTextView = (TextView) findViewById(R.id.status_textview);
+        iconImageView = (ImageView) findViewById(R.id.iconImageView);
+        displayNameTextView = (TextView) findViewById(R.id.displayNameTextView);
+        emailTextView = (TextView) findViewById(R.id.emailTextView);
+
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this); /// 結び付け。押されるとonClick()メソッドを実行。
 
@@ -106,8 +120,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if (result.isSuccess()) {  /// 認証が成功したら
             GoogleSignInAccount acct = result.getSignInAccount();
 
-            /// 「Hello, 」と利用者の表示名を画面表示する。
-            statusTextView.setText("Hello, " + acct.getDisplayName());
+            String displayName = acct.getDisplayName();
+            displayNameTextView.setText(displayName);
+
+            String email = acct.getEmail();
+            emailTextView.setText(email);
+
+            // アイコン画像のURLを取得
+            if (acct.getPhotoUrl() == null) {
+                Toast.makeText(this, "アイコン画像がありません", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String iconUrl = acct.getPhotoUrl().toString();
+            // アイコン画像をダウンロードして表示
+            new ImageDownloader(iconImageView).execute(iconUrl);
+
         } else {
             // 認証が失敗した場合
             // 今回は何もしない
@@ -129,7 +156,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
-                statusTextView.setText("Signed out"); /// 文字を表示する。
+                displayNameTextView.setText("Signed out");
+                emailTextView.setText("");
+                iconImageView.setImageResource(R.drawable.ic_launcher_background);
             }
         });
     }
@@ -137,3 +166,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     // **************↑課題2****************
 
 }
+
+class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+    private ImageView imageView;
+
+    public ImageDownloader(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    @Override
+    protected Bitmap doInBackground(String... urls) {
+        String url = urls[0];
+        Bitmap icon = null;
+        try {
+            InputStream is = new java.net.URL(url).openStream();
+            icon = BitmapFactory.decodeStream(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return icon;
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap result) {
+        imageView.setImageBitmap(result);
+    }
+
+}
+

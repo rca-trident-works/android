@@ -19,13 +19,11 @@
         android:layout_height="wrap_content" />
 
     <!-- ↓課題２ ボタンのコメントアウトを解除する -->
-    <!--
     <Button
         android:id="@+id/signOutButton"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Sign Out" />
-    -->
     <!-- ↑課題２ -->
 
 </LinearLayout>

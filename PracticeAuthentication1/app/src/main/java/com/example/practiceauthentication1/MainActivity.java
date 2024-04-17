@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // **************↓課題2****************
         // ここにログアウトボタンのOnClickListenerを実装する
 
+        findViewById(R.id.signOutButton).setOnClickListener(this);
 
         // **************↑課題2****************
 
@@ -60,12 +61,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onClick(View v) {
 
         // sign_in_buttonが押されたら，signIn()メソッドを実行する。
-        signIn();   // ※課題2では、この行をコメントアウトする※
+        // signIn();   // ※課題2では、この行をコメントアウトする※
 
         // **************↓課題2****************
         // 押されたボタンに応じて分岐する処理を実装する
 
-
+        if (v.getId() == R.id.sign_in_button) {
+            signIn();
+        } else if (v.getId() == R.id.signOutButton) {
+            signOut();
+        }
 
         // **************↑課題2****************
 
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Log.d(TAG, "handleSigninResult:" + result.isSuccess());
         if (result.isSuccess()) {  /// 認証が成功したら
             GoogleSignInAccount acct = result.getSignInAccount();
+
             /// 「Hello, 」と利用者の表示名を画面表示する。
             statusTextView.setText("Hello, " + acct.getDisplayName());
         } else {
@@ -118,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     // signOutメソッドを実装する
     // 下記のコメントアウトを解除する
 
-    /*
     private void signOut() {
         /// サインアウト（ログアウト）する。その後，onResultメソッドを実行する。
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
@@ -128,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
-    */
 
     // **************↑課題2****************
 

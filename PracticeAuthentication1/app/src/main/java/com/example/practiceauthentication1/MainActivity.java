@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             emailTextView.setText(email);
 
             String grantedScopes = acct.getGrantedScopes().toString();
+            grantedScopesTextView.setText("Granted: " + grantedScopes);
 
             // アイコン画像のURLを取得
             if (acct.getPhotoUrl() == null) {

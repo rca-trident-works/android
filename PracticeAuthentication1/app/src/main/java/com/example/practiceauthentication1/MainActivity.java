@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     ImageView iconImageView;
     TextView displayNameTextView;
     TextView emailTextView;
+    TextView grantedScopesTextView;
 
     GoogleApiClient mGoogleApiClient;
     /// Logcatで検索機能により，このアプリで出力したものだと判別するためのキーワード。
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         iconImageView = (ImageView) findViewById(R.id.iconImageView);
         displayNameTextView = (TextView) findViewById(R.id.displayNameTextView);
         emailTextView = (TextView) findViewById(R.id.emailTextView);
+        grantedScopesTextView = (TextView) findViewById(R.id.grantedScopesTextView);
 
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this); /// 結び付け。押されるとonClick()メソッドを実行。
@@ -125,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             String email = acct.getEmail();
             emailTextView.setText(email);
+
+            String grantedScopes = acct.getGrantedScopes().toString();
 
             // アイコン画像のURLを取得
             if (acct.getPhotoUrl() == null) {

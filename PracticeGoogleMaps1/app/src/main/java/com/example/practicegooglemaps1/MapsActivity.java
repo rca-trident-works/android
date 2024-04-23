@@ -58,6 +58,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        // マップの種類を設定
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
         // Add a marker in Sydney and move the camera
         loc = new LatLng(35.09059656089489, 136.87840551078992);
         /// マーカーオプションを設定（情報ウィンドウ）

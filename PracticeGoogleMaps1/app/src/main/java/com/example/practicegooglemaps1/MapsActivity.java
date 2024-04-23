@@ -1,5 +1,6 @@
 package com.example.practicegooglemaps1;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.location.Location;
@@ -10,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.practicegooglemaps1.databinding.ActivityMapsBinding;
 
@@ -56,12 +58,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /// 地図の倍率を指定
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
         // タップした時のリスナーをセット
-        mMap.setOnMapClickListener(tapLocation -> {
-            // tapされた位置の緯度経度
-            loc = new LatLng(tapLocation.latitude, tapLocation.longitude);
-            String str = String.format(Locale.US, "%f, %f", tapLocation.latitude, tapLocation.longitude);
-            mMap.addMarker(new MarkerOptions().position(loc).title(str));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                /// タップしたマーカーを削除
+                marker.remove();
+                /// このメソッドでは戻り値がfalseの場合、
+                /// 動作が似ているため同時に発生しがちなイベントである
+                /// onClickなどの他のメソッドは実行しない。
+                return false;
+            }
         });
 
         // 長押しのリスナーをセット

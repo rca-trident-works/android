@@ -3,6 +3,7 @@ package com.example.practicegooglemaps1;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -64,22 +67,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /// 地図の倍率を指定
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
         // タップした時のリスナーをセット
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                /// タップしたマーカーを削除
-                marker.remove();
-                /// このメソッドでは戻り値がfalseの場合、
-                /// 動作が似ているため同時に発生しがちなイベントである
-                /// onClickなどの他のメソッドは実行しない。
-                return false;
-            }
+        mMap.setOnMarkerClickListener(marker -> {
+            /// タップしたマーカーを削除
+            marker.remove();
+            /// このメソッドでは戻り値がfalseの場合、
+            /// 動作が似ているため同時に発生しがちなイベントである
+            /// onClickなどの他のメソッドは実行しない。
+            return false;
+        });
+
+        mMap.setOnMapClickListener(tapLocation -> {
+            mMap.addMarker(new MarkerOptions()
+                    .position(tapLocation)
+                    .title(String.format(Locale.JAPAN, "%.4f, %.4f", tapLocation.latitude, tapLocation.longitude))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+            );
         });
 
         // 長押しのリスナーをセット
         mMap.setOnMapLongClickListener(longpushLocation -> {
             LatLng newlocation = new LatLng(longpushLocation.latitude, longpushLocation.longitude);
-            mMap.addMarker(new MarkerOptions().position(newlocation).title(""+longpushLocation.latitude+" :"+ longpushLocation.longitude));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newlocation, 10));
+            mMap.addCircle(
+                    new CircleOptions()
+                            .center(newlocation)
+                            .radius(1000)
+                            .strokeColor(Color.RED)
+                            .fillColor(Color.argb(64, 255, 0, 0))
+                            .zIndex(1.0f)
+            );
         });
     }
 }

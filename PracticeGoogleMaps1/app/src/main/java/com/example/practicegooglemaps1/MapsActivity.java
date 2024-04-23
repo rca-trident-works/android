@@ -1,10 +1,8 @@
 package com.example.practicegooglemaps1;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -15,7 +13,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.practicegooglemaps1.databinding.ActivityMapsBinding;
 
@@ -42,6 +39,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Button clearButton = findViewById(R.id.buttonClear);
         clearButton.setOnClickListener(v -> {
             mMap.clear();
+        });
+
+        Button button = findViewById(R.id.easterEggButton);
+        button.setOnClickListener(v -> {
+            for (int j = 0; j <= 5; j++) {
+                // generate random location
+                double lat = Math.random() * 180 - 90;
+                double lng = Math.random() * 360 - 180;
+                LatLng newlocation = new LatLng(lat, lng);
+                mMap.addMarker(new MarkerOptions().position(newlocation).title("Start"));
+                for (int i = 0; i < 20; i++) {
+                    lng++;
+                    LatLng newlocation2 = new LatLng(lat, lng);
+                    mMap.addMarker(new MarkerOptions().position(newlocation2).title("Point1-" + i));
+                }
+
+                for (int i = 0; i < 5; i++) {
+                    lng--;
+                    lat++;
+                    LatLng newlocation3 = new LatLng(lat, lng);
+                    mMap.addMarker(new MarkerOptions().position(newlocation3).title("Point2-" + i));
+                }
+
+                lng = lng + 5;
+                lat = lat - 5;
+
+                for (int i = 0; i < 5; i++) {
+                    lng--;
+                    lat--;
+                    LatLng newlocation4 = new LatLng(lat, lng);
+                    mMap.addMarker(new MarkerOptions().position(newlocation4).title("Point3-" + i));
+                }
+            }
         });
     }
 

@@ -44,8 +44,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng loc = new LatLng(35.09059656089489, 136.87840551078992);
+        /// マーカーオプションを設定（情報ウィンドウ）
+        mMap.addMarker(new MarkerOptions().position(loc).title("名古屋港水族館"));
+        /// 表示位置を地図に指定
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        /// 地図の倍率を指定
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 17));
     }
 }

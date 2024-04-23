@@ -51,5 +51,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         /// 地図の倍率を指定
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 17));
+
+        // タップした時のリスナーをセット
+        mMap.setOnMapClickListener(tapLocation -> {
+            // tapされた位置の緯度経度
+            location = new LatLng(tapLocation.latitude, tapLocation.longitude);
+            String str = String.format(Locale.US, "%f, %f", tapLocation.latitude, tapLocation.longitude);
+            mMap.addMarker(new MarkerOptions().position(location).title(str));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14));
+        });
+
+        // 長押しのリスナーをセット
+        mMap.setOnMapLongClickListener(longpushLocation -> {
+            LatLng newlocation = new LatLng(longpushLocation.latitude, longpushLocation.longitude);
+            mMap.addMarker(new MarkerOptions().position(newlocation).title(""+longpushLocation.latitude+" :"+ longpushLocation.longitude));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newlocation, 14));
+        });
     }
 }

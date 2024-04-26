@@ -90,7 +90,7 @@ public class Weather {
             // 明日以降の天気を組み立て
             StringBuilder featureWeather = new StringBuilder();
             for (int i = 1; i < parsedData.getJSONArray("forecasts").length(); i++) {
-                featureWeather.append(parsedData.getJSONArray("forecasts").getJSONObject(i).getString("dateLabel")).append("：")
+                featureWeather.append(parsedData.getJSONArray("forecasts").getJSONObject(i).getString("dateLabel")).append(" ：")
                         .append(parsedData.getJSONArray("forecasts").getJSONObject(i).getString("telop")).append("(")
                         .append(parsedData.getJSONArray("forecasts").getJSONObject(i).getJSONObject("temperature")
                                 .getJSONObject("min").getString("celsius")).append("℃/")

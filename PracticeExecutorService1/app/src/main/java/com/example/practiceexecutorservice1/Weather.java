@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -49,8 +48,9 @@ public class Weather {
     /// 非同期処理の準備
     private void preExecute() {
         // テキストビューの内容をクリアする
-        TextView tvText = this.activity.findViewById(R.id.textView);
-        tvText.setText("");
+        TextView titleTextView = this.activity.findViewById(R.id.titleTextView);
+
+        titleTextView.setText("");
     }
     /// ■⑥後処理
     /// 後処理で取得したJSONデータを表示する
@@ -59,31 +59,26 @@ public class Weather {
         /// を Chromeの拡張機能「JSONView」を用いて見て参考にする
         /// または下記のWebサイトでWeb APIの仕様から参考にする
         /// https://weather.tsukumijima.net/
-        String s = "";  /// 表示文字を格納する変数
-
-        /// 【プラスアルファ】
-
-
+        JSONObject parsedData = null;
 
         try {
-            JSONObject jsonObject = new JSONObject(data);
-            s += "◆" + jsonObject.getString("title") + "\n";
-            s += jsonObject.getJSONObject("description").getString("publicTimeFormatted") + "時点\n";
-            /// ☆☆☆ ここから下に課題４の内容を記入 ☆☆☆
-
-
-
-            /// 【プラスアルファ】
-
-
-
+            parsedData = new JSONObject(data);
         } catch (JSONException e) {
             Log.e("AST", "入出力処理の失敗", e);    /// JSON関連の処理失敗
         }
         /// Activityに加工した文字列sを表示する
-        TextView tvText = this.activity.findViewById(R.id.textView);
-        tvText.setText(tvText.getText().toString() + s);
+        TextView titleTextView = this.activity.findViewById(R.id.titleTextView);
+        TextView publishingOfficeTextView = this.activity.findViewById(R.id.publishingOfficeTextView);
+        TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
 
+        try {
+            assert parsedData != null; // TODO: ハンドリング
+            titleTextView.setText(parsedData.getString("title"));
+            publishingOfficeTextView.setText(parsedData.getString("publishingOffice"));
+            publicTimeTextView.setText(parsedData.getString("publicTimeFormatted"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         /// 【プラスアルファ】
 
 

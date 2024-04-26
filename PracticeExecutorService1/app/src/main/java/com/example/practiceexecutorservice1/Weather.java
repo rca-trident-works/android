@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -71,11 +72,15 @@ public class Weather {
         TextView publishingOfficeTextView = this.activity.findViewById(R.id.publishingOfficeTextView);
         TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
 
+        WebView iconWebView = this.activity.findViewById(R.id.webView);
+
         try {
             assert parsedData != null; // TODO: ハンドリング
             titleTextView.setText(parsedData.getString("title"));
             publishingOfficeTextView.setText(parsedData.getString("publishingOffice"));
             publicTimeTextView.setText(parsedData.getString("publicTimeFormatted"));
+
+            iconWebView.loadUrl(parsedData.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

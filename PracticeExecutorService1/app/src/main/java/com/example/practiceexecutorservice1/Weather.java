@@ -51,8 +51,20 @@ public class Weather {
     private void preExecute() {
         // テキストビューの内容をクリアする
         TextView titleTextView = this.activity.findViewById(R.id.titleTextView);
-
+        TextView publishingOfficeTextView = this.activity.findViewById(R.id.publishingOfficeTextView);
+        TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
+        TextView todayTelopTextView = this.activity.findViewById(R.id.todayTelopTextView);
+        TextView headlineTextView = this.activity.findViewById(R.id.headlineTextView);
+        TextView featureWeatherTextView = this.activity.findViewById(R.id.featureWeatherTextView);
         titleTextView.setText("");
+        publishingOfficeTextView.setText("");
+        publicTimeTextView.setText("");
+        todayTelopTextView.setText("");
+        headlineTextView.setText("");
+        featureWeatherTextView.setText("");
+        // WebViewの内容をクリアする
+        WebView iconWebView = this.activity.findViewById(R.id.webView);
+        iconWebView.loadUrl("about:blank");
     }
     /// ■⑥後処理
     /// 後処理で取得したJSONデータを表示する

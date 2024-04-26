@@ -71,6 +71,7 @@ public class Weather {
         TextView titleTextView = this.activity.findViewById(R.id.titleTextView);
         TextView publishingOfficeTextView = this.activity.findViewById(R.id.publishingOfficeTextView);
         TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
+        TextView todayTelopTextView = this.activity.findViewById(R.id.todayTelopTextView);
 
         WebView iconWebView = this.activity.findViewById(R.id.webView);
 
@@ -79,16 +80,17 @@ public class Weather {
             titleTextView.setText(parsedData.getString("title"));
             publishingOfficeTextView.setText(parsedData.getString("publishingOffice"));
             publicTimeTextView.setText(parsedData.getString("publicTimeFormatted"));
+            todayTelopTextView.setText(parsedData.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
 
             iconWebView.loadUrl(parsedData.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url"));
+            iconWebView.setBackgroundColor(0x00000000);
+            // Change WebView Size
         } catch (JSONException e) {
             e.printStackTrace();
         }
         /// 【プラスアルファ】
-
-
-
     }
+
     /// ネットワークから天気予報を取得するクラス
     private class GetDataThread implements Runnable {
         String cityId = "";

@@ -74,6 +74,7 @@ public class Weather {
         TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
         TextView todayTelopTextView = this.activity.findViewById(R.id.todayTelopTextView);
         TextView headlineTextView = this.activity.findViewById(R.id.headlineTextView);
+        TextView featureWeatherTextView = this.activity.findViewById(R.id.featureWeatherTextView);
 
         WebView iconWebView = this.activity.findViewById(R.id.webView);
 
@@ -86,6 +87,18 @@ public class Weather {
             headlineTextView.setText(parsedData.getJSONObject("description").getString("headlineText").isEmpty() ?
                     parsedData.getJSONObject("description").getString("text") : parsedData.getJSONObject("description").getString("headlineText"));
 
+            // 明日以降の天気を組み立て
+            StringBuilder featureWeather = new StringBuilder();
+            for (int i = 1; i < parsedData.getJSONArray("forecasts").length(); i++) {
+                featureWeather.append(parsedData.getJSONArray("forecasts").getJSONObject(i).getString("dateLabel")).append("：")
+                        .append(parsedData.getJSONArray("forecasts").getJSONObject(i).getString("telop")).append("(")
+                        .append(parsedData.getJSONArray("forecasts").getJSONObject(i).getJSONObject("temperature")
+                                .getJSONObject("min").getString("celsius")).append("℃/")
+                        .append(parsedData.getJSONArray("forecasts").getJSONObject(i).getJSONObject("temperature")
+                                .getJSONObject("max").getString("celsius")).append("℃)").append("\n");
+            }
+
+            featureWeatherTextView.setText(featureWeather.toString());
             iconWebView.loadUrl(parsedData.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url"));
             iconWebView.setBackgroundColor(0x00000000);
             // Change WebView Size

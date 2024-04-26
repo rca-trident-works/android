@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -72,6 +73,7 @@ public class Weather {
         TextView publishingOfficeTextView = this.activity.findViewById(R.id.publishingOfficeTextView);
         TextView publicTimeTextView = this.activity.findViewById(R.id.publicTimeTextView);
         TextView todayTelopTextView = this.activity.findViewById(R.id.todayTelopTextView);
+        TextView headlineTextView = this.activity.findViewById(R.id.headlineTextView);
 
         WebView iconWebView = this.activity.findViewById(R.id.webView);
 
@@ -81,6 +83,8 @@ public class Weather {
             publishingOfficeTextView.setText(parsedData.getString("publishingOffice"));
             publicTimeTextView.setText(parsedData.getString("publicTimeFormatted"));
             todayTelopTextView.setText(parsedData.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
+            headlineTextView.setText(parsedData.getJSONObject("description").getString("headlineText").isEmpty() ?
+                    parsedData.getJSONObject("description").getString("text") : parsedData.getJSONObject("description").getString("headlineText"));
 
             iconWebView.loadUrl(parsedData.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url"));
             iconWebView.setBackgroundColor(0x00000000);
